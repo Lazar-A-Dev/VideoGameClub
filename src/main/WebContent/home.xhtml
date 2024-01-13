@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Klub_video_igara</title>
+</h:head>
+<h:body>
+	<h:form>
+	<h:outputLabel value="Dodaj, Brisi i Edituj clana" style="font-size: 20px; font-weight: bold; margin-bottom: 10px; display: block;" />
+		<h:panelGrid columns="2" cellpadding="5">
+			
+			<p:outputLabel value="Ime" />
+			<p:inputText value="#{clanController.clan.imeClana}"></p:inputText>
+			<p:outputLabel value="Prezime" />
+			<p:inputText value="#{clanController.clan.prezimeClana}"></p:inputText>
+			<p:outputLabel value="Email" />
+			<p:inputText value="#{clanController.clan.emailClana}"></p:inputText>
+			<p:outputLabel value="Broj telefona" />
+			<p:inputText value="#{clanController.clan.brojTelClana}"></p:inputText>
+			<p:outputLabel value="Vrsi odobrenje" />
+			<p:selectOneMenu value="#{clanController.clan.odobrenjeClana}">
+    			<f:selectItems value="#{clanController.selOdobrenjeClanova}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Broj bonus poena" />
+			<p:inputText value="#{clanController.clan.brojPoenaClana}"></p:inputText>
+			<p:outputLabel value="Racun" />
+			<p:inputText value="#{clanController.clan.racunClana}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Save"
+				action="#{clanController.saveClan(clanController.clan)}"></p:commandButton>
+			
+			
+			<p:outputLabel value="Izbrisi clana(id)" />	
+			<p:inputText value="#{clanController.idClana}" ></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Delete"
+				action="#{clanController.removeClan(clanController.idClana)}"></p:commandButton>
+	
+	
+			<p:outputLabel value="Izmeni clana(Id):" />	
+			<p:inputText value="#{clanController.idClanaUpdate}"></p:inputText>
+			<p:outputLabel value="Odobrenje" />	
+			<p:selectOneMenu value="#{clanController.odobrenjeClana}">
+    			<f:selectItems value="#{clanController.selOdobrenjeClanova}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Broj poena" />	
+			<p:inputText value="#{clanController.brojPoenaClana}"></p:inputText>
+		    <p:outputLabel value="RacunClana" />	
+			<p:inputText value="#{clanController.racunClana}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Update"
+				action="#{clanController.updateClan(clanController.idClanaUpdate, clanController.odobrenjeClana, clanController.brojPoenaClana, clanController.racunClana)}"></p:commandButton>
+	
+		</h:panelGrid>
+		
+		
+		<h:dataTable value="#{clanController.listClanova()}" var="e"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    			style="color:white;font-size:23px;font-weight:bold; margin-top:30px;text-shadow: 1px 1px 2px black, 0 0 15px green, 0 0 5px darkgreen; border:3px solid #a5e840; background-color:rgba(211, 239, 167,0.7);text-align:center; border-spacing: 5px; width:80%; margin-left:10%;">
+    	
+    		<h:column >
+    			<f:facet  name="header">
+    				Id
+    			</f:facet>
+    			<h:outputText value="#{e.idClana}"/>
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">
+    				Ime
+				</f:facet>
+    			<h:outputText value="#{e.imeClana}"/>
+    		</h:column>
+
+    		<h:column>
+    			<f:facet name="header">
+    				Prezime
+				</f:facet>
+    			<h:outputText value="#{e.prezimeClana}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Email
+				</f:facet>
+    			<h:outputText value="#{e.emailClana}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Telefon
+				</f:facet>
+    			<h:outputText value="#{e.brojTelClana}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Odobrenje
+				</f:facet>
+    			<h:outputText value="#{e.odobrenjeClana}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Broj Poena
+				</f:facet>
+    			<h:outputText value="#{e.brojPoenaClana}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Racun(din)
+				</f:facet>
+    			<h:outputText value="#{e.racunClana}"/>
+    		</h:column>	
+    	</h:dataTable>
+    	
+    	
+    	<h:outputLabel value="Dodaj,Brisi i Edituj proizvod" style="font-size: 20px; font-weight: bold; margin-bottom: 10px; display: block;" />
+    	<h:panelGrid columns="2" cellpadding="5">
+    	
+    	<p:outputLabel value="Tip" />
+			<p:inputText value="#{proizvodController.proizvod.tipProizvoda}"></p:inputText>
+			<p:outputLabel value="Naziv" />
+			<p:inputText value="#{proizvodController.proizvod.nazivProizvoda}"></p:inputText>
+			<p:outputLabel value="Cena" />
+			<p:inputText value="#{proizvodController.proizvod.cenaProizvoda}"></p:inputText>
+			<p:outputLabel value="Cena po danu" />
+			<p:inputText value="#{proizvodController.proizvod.cenaPoDanuProizvoda}"></p:inputText>
+			<p:outputLabel value="Bonus poeni" />
+			<p:inputText value="#{proizvodController.proizvod.bonusPoeniProizvoda}"></p:inputText>
+			<p:outputLabel value="Odobrenje gosta" />
+			<p:inputText value="#{proizvodController.proizvod.gostKupujeProizvod}"></p:inputText>
+			<p:outputLabel value="Kolicina" />
+			<p:inputText value="#{proizvodController.proizvod.kolicinaProizvoda}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Save"
+				action="#{proizvodController.saveProizvod(proizvodController.proizvod)}"></p:commandButton>
+				
+				
+			<p:outputLabel value="Izbrisi proizvod(id)" />	
+			<p:inputText value="#{proizvodController.idProizvoda}" ></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Delete"
+				action="#{proizvodController.removeProizvod(proizvodController.idProizvoda)}"></p:commandButton>
+	
+	
+			<p:outputLabel value="Izmeni proizvod(Id):" />	
+			<p:inputText value="#{proizvodController.idProizvodaUpdate}"></p:inputText>
+			<p:outputLabel value="Cena" />	
+			<p:inputText value="#{proizvodController.cenaProizvoda}"></p:inputText>
+			<p:outputLabel value="Cena po danu" />	
+			<p:inputText value="#{proizvodController.cenaPoDanuProizvoda}"></p:inputText>
+		    <p:outputLabel value="Odobrenje gosta" />
+			<p:inputText value="#{proizvodController.gostKupujeProizvod}"></p:inputText>
+			<p:outputLabel value="Kolicina" />	
+			<p:inputText value="#{proizvodController.kolicinaProizvoda}"></p:inputText>
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Update"
+				action="#{proizvodController.updateProizvod(proizvodController.idProizvodaUpdate, proizvodController.cenaProizvoda, proizvodController.cenaPoDanuProizvoda, proizvodController.gostKupujeProizvod, proizvodController.kolicinaProizvoda)}"></p:commandButton>
+	</h:panelGrid>
+    	
+    	<h:dataTable value="#{proizvodController.listProizvoda()}" var="e"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    			style="color:white;font-size:23px;font-weight:bold; margin-top:30px;text-shadow: 1px 1px 2px black, 0 0 15px green, 0 0 5px darkgreen; border:3px solid #a5e840; background-color:#fee76a;text-align:center; border-spacing: 5px; width:80%; margin-left:10%;">
+    	
+    		<h:column >
+    			<f:facet  name="header">
+    				Id
+    			</f:facet>
+    			<h:outputText value="#{e.idProizvoda}"/>
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">
+    				Tip
+				</f:facet>
+    			<h:outputText value="#{e.tipProizvoda}"/>
+    		</h:column>
+
+    		<h:column>
+    			<f:facet name="header">
+    				Naziv
+				</f:facet>
+    			<h:outputText value="#{e.nazivProizvoda}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Cena(din)
+				</f:facet>
+    			<h:outputText value="#{e.cenaProizvoda}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Cena po danu
+				</f:facet>
+    			<h:outputText value="#{e.cenaPoDanuProizvoda}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Bonus poeni
+				</f:facet>
+    			<h:outputText value="#{e.bonusPoeniProizvoda}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Prodaja gostu
+				</f:facet>
+    			<h:outputText value="#{e.gostKupujeProizvod}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Kolicina
+				</f:facet>
+    			<h:outputText value="#{e.kolicinaProizvoda}"/>
+    		</h:column>	
+    	</h:dataTable>
+    	
+    		<h:outputLabel value="Kupi, Iznajmi, Doniraj proizod" style="font-size: 20px; font-weight: bold; margin-bottom: 10px; display: block;" />
+    	<h:panelGrid columns="2" cellpadding="5">
+    		<p:outputLabel value="Tip" />
+			<p:inputText value="#{proizvodController.tipProizvoda}"></p:inputText>
+			<p:outputLabel value="Naziv" />
+			<p:inputText value="#{proizvodController.nazivProizvoda}"></p:inputText>
+			<p:outputLabel value="Kolicina" />
+			<p:inputText value="#{proizvodController.kolicinaProizvodaBuy}"></p:inputText>
+			<p:outputLabel value="Kupac" />
+			<p:inputText value="#{proizvodController.tipKupca}"></p:inputText>
+			<p:outputLabel value="Iskoristi bonus poene:" />
+			<p:inputText value="#{proizvodController.koristiPoene}"></p:inputText>
+			<p:outputLabel value="Id clana(prazno ako je gost):" />
+			<p:inputText value="#{proizvodController.idKupca}"></p:inputText>
+			
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Buy"
+				action="#{proizvodController.buyProizvod(proizvodController.tipProizvoda, proizvodController.nazivProizvoda, proizvodController.kolicinaProizvodaBuy, proizvodController.tipKupca, proizvodController.koristiPoene, proizvodController.idKupca)}"></p:commandButton>
+		
+				
+			<p:outputLabel value="Id clana:" />
+			<p:inputText value="#{klubController.idClana}"></p:inputText>
+			<p:outputLabel value="Tip proizvoda:" />
+			<p:inputText value="#{klubController.tipProizvodaRent}"></p:inputText>
+			<p:outputLabel value="Naziv proizvoda:" />
+			<p:inputText value="#{klubController.nazivProizvodaRent}"></p:inputText>
+			<p:outputLabel value="Datum od" />
+			<p:calendar value="#{klubController.datumOd}" showOn="button" pattern="yyyy-MM-dd" />
+			<p:outputLabel value="Datum do" />
+			<p:calendar value="#{klubController.datumDo}" showOn="button" pattern="yyyy-MM-dd" />
+
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Rent"
+				action="#{klubController.rentProizvod(klubController.idClana, klubController.tipProizvodaRent, klubController.nazivProizvodaRent, klubController.datumOd, klubController.datumDo)}"></p:commandButton>
+		
+		
+			<p:outputLabel value="Id clana:" />
+			<p:inputText value="#{klubController.idClanaDonate}"></p:inputText>
+			<p:outputLabel value="Tip prozivoda" />
+			<p:inputText value="#{klubController.tipProizvoda}"></p:inputText>
+			<p:outputLabel value="Naziv proizvoda" />
+			<p:inputText value="#{klubController.nazivProizvoda}"></p:inputText>
+			<p:outputLabel value="Kolicina" />
+			<p:inputText value="#{klubController.kolicinaProizvoda}"></p:inputText>
+
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Donate"
+				action="#{klubController.donateProizvod(klubController.idClanaDonate, klubController.tipProizvoda, klubController.nazivProizvoda, klubController.kolicinaProizvoda)}"></p:commandButton>
+		
+		
+		
+			<p:outputLabel value="Id clana:" />
+			<p:inputText value="#{klubController.idClanaSell}"></p:inputText>
+			<p:outputLabel value="Tip prozivoda" />
+			<p:inputText value="#{klubController.tipProizvodaSell}"></p:inputText>
+			<p:outputLabel value="Naziv proizvoda" />
+			<p:inputText value="#{klubController.nazivProizvodaSell}"></p:inputText>
+			<p:outputLabel value="Kolicina" />
+			<p:inputText value="#{klubController.kolicinaProizvodaSell}"></p:inputText>
+
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton value="Sell"
+				action="#{klubController.sellProizvod(klubController.idClanaSell, klubController.tipProizvodaSell, klubController.nazivProizvodaSell, klubController.kolicinaProizvodaSell)}"></p:commandButton>
+				
+				
+		</h:panelGrid>
+		
+		<h:dataTable value="#{klubController.listKlub()}" var="e"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    			style="color:white;font-size:23px;font-weight:bold; margin-top:30px;text-shadow: 1px 1px 2px black, 0 0 15px green, 0 0 5px darkgreen; border:3px solid #a5e840; background-color:#39d2eb;text-align:center; border-spacing: 5px; width:80%; margin-left:10%;">
+    	
+    		<h:column >
+    			<f:facet  name="header">
+    				Id
+    			</f:facet>
+    			<h:outputText value="#{e.idKlub}"/>
+    		</h:column>
+ 
+    		<h:column>
+    			<f:facet name="header">
+    				Tip radnje
+				</f:facet>
+    			<h:outputText value="#{e.tipRadnje}"/>
+    		</h:column>
+
+    		<h:column>
+    			<f:facet name="header">
+    				Id clana
+				</f:facet>
+    			<h:outputText value="#{e.idClana}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Id proizvoda
+				</f:facet>
+    			<h:outputText value="#{e.idProizvoda}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Datum
+				</f:facet>
+    			<h:outputText value="#{e.datum}"/>
+    		</h:column>
+    		
+    		<h:column>
+    			<f:facet name="header">
+    				Opis
+				</f:facet>
+    			<h:outputText value="#{e.opis}"/>
+    		</h:column>
+    	</h:dataTable>
+	</h:form>
+</h:body>
+</html>
